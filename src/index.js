@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux';
-import createHistory from 'history/createBrowserHistory';
+// import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory as createHistory } from 'history'
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from 'react-router-redux';
-import {Route, Switch} from 'react-router';
+import {Route} from 'react-router';
 import App from "./components/App";
 
 const store = createStore(
