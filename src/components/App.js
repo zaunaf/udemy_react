@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Switch} from 'react-router';
 import LoginForm from "./LoginForm";
 import BlogPostsListContainer from "./BlogPostsListContainer";
+import { Link } from 'react-router-dom';
 
 class App extends React.Component {
     render() {
