@@ -3,40 +3,35 @@
 // Setiap alternatif cara perubahan blogPost ada di sini
 // Reducer blogPostList selalu mengembalikan state terakhir
 // yang telah dimodifikasi
-import { BLOG_POST_LIST_REQUEST, BLOG_POST_LIST_RECEIVED, BLOG_POST_LIST_ERROR } from "../actions/actions";
+import { BLOG_POST_REQUEST, BLOG_POST_RECEIVED, BLOG_POST_ERROR } from "../actions/actions";
 
 export default (state= {
-    posts: null,
+    post: null,
     isFetching: false
 }, action) => {
     switch (action.type) {
-        case BLOG_POST_LIST_REQUEST:
+        case BLOG_POST_REQUEST:
             return {
                 ...state,
                 isFetching: true
             };
-        case BLOG_POST_LIST_RECEIVED:
-            // return {
-            //     ...state,
-            //     posts: action.data['hydra:member'],
-            //     isFetching: false
-            // };
-            // console.log(action.data);
+        case BLOG_POST_RECEIVED:
+            console.log(action.data);
             let lastState = {
                 ...state,
-                posts: action.data['hydra:member'],
+                post: action.data,
                 isFetching: false
             }
-            // console.log(lastState);
+            console.log(lastState);
             return lastState;
 
-        case BLOG_POST_LIST_ERROR:
+        case BLOG_POST_ERROR:
             return {
                 ...state,
                 isFetching: false,
-                posts: null
+                post: null
             };
-        // case BLOG_POST_LIST_ADD:
+        // case BLOG_POST_ADD:
         //     return {
         //         ...state,
         //         posts: state.posts ? state.posts.concat(action.data) : state.posts

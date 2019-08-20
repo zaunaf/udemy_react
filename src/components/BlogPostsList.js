@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class BlogPostsList extends React.Component {
     constructor(props){
@@ -20,7 +21,11 @@ class BlogPostsList extends React.Component {
                 {posts && posts.map(post => (
                     <div className="card mb-3 mt-3 shadow-sm" key={post.id}>
                         <div className="card-body">
-                            <h4>{post.title}{post.DeptName}</h4>
+                            <h4>
+                                <Link to={`/blog-post/${post.id}`}>
+                                    {post.title}{post.DeptName}
+                                </Link>
+                            </h4>
                             <p className="card-text">
                                 Lorem ipsum dolor sir amet dsb wah oh weh bakekok awer aewoi 
                             </p>
