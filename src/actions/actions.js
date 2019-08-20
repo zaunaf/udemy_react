@@ -4,6 +4,7 @@
 
 // Import superagent's request for fetching data to backend 
 import {requests} from "../agent";
+import {SubmissionError} from "redux-form";
 
 export const BLOG_POST_LIST_REQUEST = 'BLOG_POST_LIST_REQUEST';
 export const BLOG_POST_LIST_RECEIVED = 'BLOG_POST_LIST_RECEIVED';
@@ -65,6 +66,7 @@ export const blogPostFetch = (id) => {
     }
 };
 
+// Action ini akan menendang middleware
 export const userLoginSuccess = (token, id, username) => {
     return {
         type: USER_LOGIN_SUCCESS,
@@ -74,14 +76,19 @@ export const userLoginSuccess = (token, id, username) => {
     }
 };
 
+// Action yg ditendang form untuk panggil ke backend API Platform
+// Jika berhasil, nendang ke userLoginSuccess
 export const userLoginAttempt = (username, password) => {
     return (dispatch) => {
         return requests
             .post('/login_check', {username, password})
             .then(response => dispatch(userLoginSuccess(response.token, response.id, response.username)))
             .catch(error => {
-                console.log('Login failed');
-            })
+                throw new SubmissionError({
+                    _error: 'Username or password is invalid'
+                })                
+            });
+
 
     }
 };
