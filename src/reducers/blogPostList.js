@@ -6,7 +6,8 @@
 import { BLOG_POST_LIST, BLOG_POST_LIST_ADD } from "../actions/actions";
 
 export default (state= {
-    posts: null
+    posts: null,
+    abah: 'keren'
 }, action) => {
     switch (action.type) {
         case BLOG_POST_LIST:

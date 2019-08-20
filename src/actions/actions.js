@@ -21,7 +21,7 @@ export const blogPostList = () => ({
 export const blogPostAdd = () => ({
     type: BLOG_POST_LIST_ADD,
     data: {
-        id: Math.flooer(Math.random() * 100),
+        id: Math.floor(Math.random() * 100),
         title: "A newly created blogpost"
     }
 });

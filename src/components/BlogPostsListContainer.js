@@ -19,6 +19,10 @@ class BlogPostsListContainer extends React.Component {
         // Jalankan action
         console.log("Action is dispatched");
         this.props.blogPostList();
+        // Test jalankan action add blogPost
+        setTimeout(this.props.blogPostAdd,3000);
+        setTimeout(this.props.blogPostAdd,5000);
+        setTimeout(this.props.blogPostAdd,7000);
     }
     render() {
         // Masih kosong saat pertama dijalankan
