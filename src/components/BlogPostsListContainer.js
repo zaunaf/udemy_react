@@ -30,7 +30,7 @@ class BlogPostsListContainer extends React.Component {
         console.log("Rendering..");
         console.log(this.props)
         // Selalu menampilkan isi posts terakhir setiap render dijalankan
-        return (<BlogPostsList posts={this.props.posts}/>);
+        return (<BlogPostsList posts={this.props.posts} isFetching={this.props.isFetching}/>);
     }
 }
 
