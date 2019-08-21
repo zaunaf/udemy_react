@@ -17,8 +17,8 @@ class LoginForm extends React.Component {
     componentDidUpdate(prevProps) {
         // Compare the token with previous token
         if (prevProps.token !== this.props.token) {
-            console.log(prevProps);
-            console.log(this.props);            
+            // console.log(prevProps);
+            // console.log(this.props);            
             this.props.history.push("/");
         }
     }
@@ -29,9 +29,9 @@ class LoginForm extends React.Component {
             values.password
         );
     }
-    render() {      
+    render() {
         const {handleSubmit, error}  = this.props;
-        console.log(error);
+        // console.log(error);
         return (
             <div className="text-center">
                 {error && <div className="alert alert-danger">{error}</div>}

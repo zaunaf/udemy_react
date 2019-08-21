@@ -67,12 +67,11 @@ export const blogPostFetch = (id) => {
 };
 
 // Action ini akan menendang middleware
-export const userLoginSuccess = (token, id, username) => {
+export const userLoginSuccess = (token, userId) => {
     return {
         type: USER_LOGIN_SUCCESS,
         token,
-        id,
-        username
+        userId
     }
 };
 
@@ -82,14 +81,65 @@ export const userLoginAttempt = (username, password) => {
     return (dispatch) => {
         return requests
             .post('/login_check', {username, password})
-            .then(response => dispatch(userLoginSuccess(response.token, response.id, response.username)))
+            .then(response => dispatch(userLoginSuccess(response.token, response.userId)))
             .catch(error => {
                 throw new SubmissionError({
                     _error: 'Username or password is invalid'
                 })                
             });
-
-
     }
 };
 
+
+
+export const USER_PROFILE_REQUEST = 'USER_PROFILE_REQUEST';
+export const USER_PROFILE_RECEIVED = 'USER_PROFILE_RECEIVED';
+export const USER_PROFILE_ERROR = 'USER_PROFILE_ERROR';
+
+// Dipanggil ketika userProfileFetch dimulai
+export const userProfileRequest = () => {
+    return {
+        type: USER_PROFILE_REQUEST
+    }
+}
+
+// Dipanggil ketika request userProfileFetch dapat jawaban dari server
+export const userProfileReceived = (userId, userData) => {
+    return {
+        type: USER_PROFILE_RECEIVED,
+        userId,
+        userData
+    }
+}
+
+// Dipanggil dari App.js
+export const userProfileFetch = (userId) => {
+    return (dispatch) => {
+        console.log('UserProfileFetch kicked');
+        
+        // Kasih info bahwa sedang loading
+        dispatch(userProfileRequest());
+        return requests
+            .get(`/userinfos/${userId}`, true)
+            .then(response => dispatch(userProfileReceived(userId, response)))
+            .catch(error => dispatch(userProfileError))
+    }
+};
+
+// Dipanggil ketika error
+export const userProfileError = () => {
+    return {
+        type: USER_PROFILE_ERROR
+    }
+}
+
+
+export const USER_SET_ID = 'USER_SET_ID';
+
+// Dipanggil ketika id berubah
+export const userSetId = (userId) => {
+    return {
+        type: USER_SET_ID,
+        userId
+    }
+}

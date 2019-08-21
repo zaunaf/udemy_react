@@ -12,8 +12,6 @@ const tokenPlugin = (request) => {
 }
 export const requests = {
     get: (url) => {
-        console.log('From get');
-        console.log(token);
         return superagent
             .get(`${API_ROOT}${url}`)
             .use(tokenPlugin)

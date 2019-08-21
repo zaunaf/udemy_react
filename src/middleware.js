@@ -9,7 +9,7 @@ export const tokenMiddleware = store => next => action => {
         case USER_LOGIN_SUCCESS:
             // Write to localStorage in browser
             window.localStorage.setItem('jwtToken', action.token);
-            window.localStorage.setItem('id', action.id);
+            window.localStorage.setItem('userId', action.userId);
             window.localStorage.setItem('username', action.username);
             
             // Ini nendang balik ke agent 
